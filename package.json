@@ -19,8 +19,8 @@
   },
   "homepage": "https://github.com/SeymoreBiggins/Social-Network-API#readme",
   "dependencies": {
+    "dateformat": "^4.3.1",
     "express": "^4.17.1",
-    "moment": "^2.29.1",
     "mongoose": "^5.11.4"
   }
 }
