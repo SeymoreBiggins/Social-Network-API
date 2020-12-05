@@ -1,35 +1,6 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('dateformat');
 
-const ThoughtSchema = new Schema(
-  {
-    thoughtBody: {
-      type: String,
-      required: 'You must enter a thought',
-      minlength:1,
-      maxlength: 280, // see twitter
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: (createdAtDate) =>
-        dateFormat(createdAtDate, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
-    },
-    username: {
-      type: String,
-      required: 'You must enter a name'
-    },
-    reactions: [ReactionSchema],
-  },
-  {
-    toJSON: {
-      virtuals: true,
-      getters: true,
-    },
-    id: false,
-  }
-);
-
 const ReactionSchema = new Schema(
   {
     reactionId: {
@@ -57,6 +28,35 @@ const ReactionSchema = new Schema(
     toJSON: {
       getters: true,
     },
+  }
+);
+
+const ThoughtSchema = new Schema(
+  {
+    thoughtBody: {
+      type: String,
+      required: 'You must enter a thought',
+      minlength:1,
+      maxlength: 280, // see twitter
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (createdAtDate) =>
+        dateFormat(createdAtDate, "dddd, mmmm dS, yyyy, h:MM:ss TT"),
+    },
+    username: {
+      type: String,
+      required: 'You must enter a name'
+    },
+    reactions: [ReactionSchema],
+  },
+  {
+    toJSON: {
+      virtuals: true,
+      getters: true,
+    },
+    id: false,
   }
 );
 
